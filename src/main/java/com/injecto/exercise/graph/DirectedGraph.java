@@ -1,8 +1,10 @@
 package com.injecto.exercise.graph;
 
 import javax.annotation.Nullable;
+import javax.annotation.concurrent.NotThreadSafe;
 import java.util.*;
 
+@NotThreadSafe
 public class DirectedGraph<V> implements Graph<V> {
     private final Map<V, Set<V>> vertices = new HashMap<>();
 
@@ -50,9 +52,13 @@ public class DirectedGraph<V> implements Graph<V> {
         return Collections.emptyList();
     }
 
+    /**
+     * @return Iterator over copy of vertices. So {@link Iterator#remove()} don't affect graph structure.
+     */
     @Override
     public Iterator<V> iterator() {
-        return vertices.keySet().iterator();
+        var vertices = new HashSet<>(this.vertices.keySet());
+        return vertices.iterator();
     }
 
     private static class SearchPath<V> {

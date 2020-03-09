@@ -25,8 +25,8 @@ public class DirectedGraph<V> implements Graph<V> {
             return Collections.emptyList();
         }
 
-        var searchQueue = new ArrayDeque<Edge<V>>();
-        searchQueue.add(new Edge<>(source, null));
+        var searchQueue = new ArrayDeque<SearchPath<V>>();
+        searchQueue.add(new SearchPath<>(source, null));
 
         var visited = new HashSet<V>();
         visited.add(source);
@@ -39,7 +39,7 @@ public class DirectedGraph<V> implements Graph<V> {
 
             for (V adjacent : vertices.get(probe.destination)) {
                 if (visited.add(adjacent)) {
-                    var adjacentEdge = new Edge<>(adjacent, probe);
+                    var adjacentEdge = new SearchPath<>(adjacent, probe);
                     searchQueue.add(adjacentEdge);
                 }
             }
@@ -50,11 +50,11 @@ public class DirectedGraph<V> implements Graph<V> {
         return Collections.emptyList();
     }
 
-    private static class Edge<V> {
+    private static class SearchPath<V> {
         private V destination;
-        private @Nullable Edge<V> traceback;
+        private @Nullable SearchPath<V> traceback;
 
-        private Edge(V destination, @Nullable Edge<V> traceback) {
+        private SearchPath(V destination, @Nullable SearchPath<V> traceback) {
             this.destination = destination;
             this.traceback = traceback;
         }
@@ -77,8 +77,8 @@ public class DirectedGraph<V> implements Graph<V> {
         public boolean equals(Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            Edge<?> edge = (Edge<?>) o;
-            return destination.equals(edge.destination);
+            SearchPath<?> searchPath = (SearchPath<?>) o;
+            return destination.equals(searchPath.destination);
         }
 
         @Override

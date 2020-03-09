@@ -8,6 +8,10 @@
     <artifactId>graph</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
@@ -31,7 +35,7 @@
                 <version>3.8.1</version>
 
                 <configuration>
-                    <release>13</release>
+                    <release>11</release>
                 </configuration>
             </plugin>
 

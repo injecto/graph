@@ -2,8 +2,7 @@ package com.injecto.exercise.graph;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -112,5 +111,22 @@ public class DirectedGraphTest {
         // assert
         assertEquals(List.of("A", "B", "C", "D"), path);
         assertEquals(List.of("D", "A"), reversePath);
+    }
+
+    @Test
+    void verticesIterationTest() {
+        // arrange
+        var graph = new DirectedGraph<String>();
+        graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
+        var vertices = new HashSet<>();
+
+        // act
+        for (String vertex : graph) {
+            vertices.add(vertex);
+        }
+
+        // assert
+        assertEquals(Set.of("A", "B", "C"), vertices);
     }
 }

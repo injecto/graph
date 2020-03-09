@@ -2,7 +2,7 @@ package com.injecto.exercise.graph;
 
 import java.util.List;
 
-public interface Graph<V> {
+public interface Graph<V> extends Iterable<V> {
     /**
      * @return false if vertex is already in the graph
      */

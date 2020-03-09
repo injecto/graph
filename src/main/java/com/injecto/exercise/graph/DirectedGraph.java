@@ -50,6 +50,11 @@ public class DirectedGraph<V> implements Graph<V> {
         return Collections.emptyList();
     }
 
+    @Override
+    public Iterator<V> iterator() {
+        return vertices.keySet().iterator();
+    }
+
     private static class SearchPath<V> {
         private V destination;
         private @Nullable SearchPath<V> traceback;

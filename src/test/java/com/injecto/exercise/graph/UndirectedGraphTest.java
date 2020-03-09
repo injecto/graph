@@ -3,7 +3,9 @@ package com.injecto.exercise.graph;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -112,5 +114,22 @@ public class UndirectedGraphTest {
         assertEquals(List.of("A", "E"), path);
         assertEquals(List.of("E", "A"), reversePath);
         assertEquals(List.of("A", "B", "C"), anotherPath);
+    }
+
+    @Test
+    void verticesIterationTest() {
+        // arrange
+        var graph = new UndirectedGraph<String>();
+        graph.addEdge("A", "B");
+        graph.addEdge("A", "C");
+        var vertices = new HashSet<>();
+
+        // act
+        for (String vertex : graph) {
+            vertices.add(vertex);
+        }
+
+        // assert
+        assertEquals(Set.of("A", "B", "C"), vertices);
     }
 }
